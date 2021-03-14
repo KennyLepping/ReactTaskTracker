@@ -19,7 +19,7 @@ const App = () => {
     getTasks();
   }, []);
 
-  // Fetch Tasks
+  // Fetch Tasks from API
   // Can replace the JSON server with any backend
   const fetchTasks = async () => {
     const res = await fetch("http://localhost:5000/tasks");

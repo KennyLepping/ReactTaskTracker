@@ -1,22 +1,16 @@
 {
   "tasks": [
     {
-      "id": 2,
-      "text": "Produce Music",
-      "day": "Feb 9th at 8:00pm",
-      "reminder": true
-    },
-    {
-      "id": 3,
-      "text": "Program",
-      "day": "Feb 9th at 10:00pm",
-      "reminder": false
-    },
-    {
       "text": "Drum",
       "day": "Day",
       "reminder": true,
       "id": 4
+    },
+    {
+      "text": "Use Wagtail",
+      "day": "Feb 13th 2:00-m",
+      "reminder": true,
+      "id": 5
     }
   ]
 }

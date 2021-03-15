@@ -4,11 +4,12 @@ from .models import Task
 
 
 class TaskSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
+    # owner = serializers.ReadOnlyField(source='owner.username')
 
     class Meta:
         model = Task
-        fields = ('id', 'reminder_text', 'day', 'reminder', 'owner')
+        # fields = ('id', 'reminder_text', 'day', 'reminder', 'owner')
+        fields = ('id', 'reminder_text', 'day', 'reminder') 
 
 
 class UserSerializer(serializers.ModelSerializer):

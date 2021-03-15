@@ -1,0 +1,26 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+task-fe/node_modules
+task-fe/.pnp
+task-fe/.pnp.js
+
+# testing
+task-fe/coverage
+
+# production
+task-fe/build
+
+# misc
+task-fe/.DS_Store
+task-fe/.env.local
+task-fe/.env.development.local
+task-fe/.env.test.local
+task-fe/.env.production.local
+
+task-fe/npm-debug.log*
+task-fe/yarn-debug.log*
+task-fe/yarn-error.log*
+
+django-be/db.sqlite3
+django-be/Pipfile

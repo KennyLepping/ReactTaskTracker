@@ -1,18 +1,18 @@
 import { useState } from "react";
 
 const AddTask = ({ onAdd }) => {
-  const [text, setText] = useState("");
+  const [reminder_text, setText] = useState("");
   const [day, setDay] = useState("");
   const [reminder, setReminder] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    if(!text) {
-       alert('Please add a task') 
+    if(!reminder_text) {
+       alert('Please add a task')
     }
 
-    onAdd({ text, day, reminder })
+    onAdd({ reminder_text, day, reminder })
 
     setText('')
     setDay('')
@@ -26,7 +26,7 @@ const AddTask = ({ onAdd }) => {
         <input
           type="text"
           placeholder="Add Task"
-          value={text}
+          value={reminder_text}
           onChange={(e) => setText(e.target.value)}
         />
       </div>

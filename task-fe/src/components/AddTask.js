@@ -8,6 +8,8 @@ const AddTask = ({ onAdd }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
+    console.log(reminder_text, day, reminder);
+
     if(!reminder_text) {
        alert('Please add a task')
        return

@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
 import About from "./components/About";
+import axios from "./api/taskTrackerAPI";
 
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false);
@@ -22,38 +23,27 @@ const App = () => {
   // Fetch Tasks
   // Can replace the JSON server with any backend
   const fetchTasks = async () => {
-    const res = await fetch("http://localhost:8000/tasks/");
-    const data = await res.json();
+  const res = await axios.get("tasks/tasks/");
 
-    return data;
+    return res.data;
   };
 
   const fetchTask = async (id) => {
-    const res = await fetch(`http://localhost:8000/tasks/${id}/`);
-    const data = await res.json();
+    const res = await axios.get(`tasks/tasks/${id}/`);
 
-    return data;
+    return res.data;
   };
 
   // Add Task
   const addTask = async (task) => {
-    const res = await fetch("http://localhost:8000/tasks/", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(task),
-    });
+    const res = await axios.post("tasks/tasks/", task);
 
-    const data = await res.json();
-    setTasks([...tasks, data]);
+    setTasks([...tasks, res.data]);
   };
 
   // Delete Task
   const deleteTask = async (id) => {
-    await fetch(`http://localhost:8000/tasks/${id}/`, {
-      method: "DELETE",
-    });
+    const res = await axios.delete(`tasks/tasks/${id}/`);
 
     setTasks(tasks.filter((task) => task.id !== id));
   };
@@ -62,20 +52,11 @@ const App = () => {
   const toggleReminder = async (id) => {
     const taskToToggle = await fetchTask(id);
     const updTask = { ...taskToToggle, reminder: !taskToToggle.reminder };
-
-    const res = await fetch(`http://localhost:8000/tasks/${id}/`, {
-      method: "PUT",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(updTask),
-    });
-
-    const data = await res.json();
+    const res = await axios.put(`tasks/tasks/${id}/`, updTask);
 
     setTasks(
       tasks.map((task) =>
-        task.id === id ? { ...task, reminder: data.reminder } : task
+        task.id === id ? { ...task, reminder: res.data.reminder } : task
       )
     );
   };

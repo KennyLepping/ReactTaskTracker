@@ -9,7 +9,7 @@ class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         # fields = ('id', 'reminder_text', 'day', 'reminder', 'owner')
-        fields = ('id', 'reminder_text', 'day', 'reminder') 
+        fields = ('url', 'id', 'reminder_text', 'day', 'reminder') 
 
 
 class UserSerializer(serializers.ModelSerializer):

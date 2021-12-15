@@ -7,6 +7,8 @@ import AddTask from "./components/AddTask";
 import About from "./components/About";
 import axios from "./api/taskTrackerAPI";
 
+// https://youtu.be/w7ejDZ8SWv8 <- Made from this tutorial
+
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false);
   const [tasks, setTasks] = useState([]);
@@ -21,30 +23,29 @@ const App = () => {
   }, []);
 
   // Fetch Tasks
-  // Can replace the JSON server with any backend
   const fetchTasks = async () => {
-  const res = await axios.get("tasks/tasks/");
+  const res = await axios.get("tasks/");
 
     return res.data;
   };
 
   const fetchTask = async (id) => {
-    const res = await axios.get(`tasks/tasks/${id}/`);
+    const res = await axios.get(`tasks/${id}/`);
 
     return res.data;
   };
 
   // Add Task
   const addTask = async (task) => {
-    const res = await axios.post("tasks/tasks/", task);
+    const res = await axios.post("tasks/", task);
 
     setTasks([...tasks, res.data]);
   };
 
   // Delete Task
   const deleteTask = async (id) => {
-    const res = await axios.delete(`tasks/tasks/${id}/`);
-
+    const res = await axios.delete(`tasks/${id}/`);
+    
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
@@ -52,8 +53,7 @@ const App = () => {
   const toggleReminder = async (id) => {
     const taskToToggle = await fetchTask(id);
     const updTask = { ...taskToToggle, reminder: !taskToToggle.reminder };
-    const res = await axios.put(`tasks/tasks/${id}/`, updTask);
-
+    const res = await axios.put(`tasks/${id}/`, updTask);
     setTasks(
       tasks.map((task) =>
         task.id === id ? { ...task, reminder: res.data.reminder } : task
